@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Acquisition - Professional Video Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #0D0D0E; color: #E4E4E7; overflow-x: hidden; }
+        .glass-effect { background: rgba(31, 31, 33, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(59, 130, 246, 0.1); }
+        .glow-input:focus { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); border-color: #3B82F6; }
+        .progress-bar { background: linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%); transition: width 0.3s ease; }
+        .btn-primary { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); transition: all 0.2s ease; }
+        .btn-primary:hover { transform: scale(1.02); }
+        .gradient-text { background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .spinner { animation: rotate 1s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div id="app" class="container mx-auto px-4 py-8 md:py-16 max-w-7xl">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">Media Acquisition</h1>
+            <p class="text-gray-400 text-lg">Professional-grade video downloader. Fast and secure.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto mb-12">
+            <div class="glass-effect rounded-2xl p-6">
+                <div class="flex flex-col md:flex-row gap-3">
+                    <input type="text" id="urlInput" placeholder="Paste video URL here..." class="flex-1 bg-[#1A1A1C] border border-[#1F1F21] rounded-xl px-6 py-4 text-white focus:outline-none glow-input" />
+                    <button id="fetchBtn" class="btn-primary px-8 py-4 rounded-xl text-white font-medium">Fetch Media</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="max-w-4xl mx-auto hidden">
+            <div class="glass-effect rounded-2xl p-6 text-center">
+                <h3 id="videoTitle" class="text-xl font-semibold mb-4">Video Ready</h3>
+                <button class="btn-primary px-6 py-3 rounded-xl">Download Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlInput = document.getElementById('urlInput');
+        const fetchBtn = document.getElementById('fetchBtn');
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        fetchBtn.addEventListener('click', () => {
+            const url = urlInput.value.trim();
+            if (url) {
+                fetchBtn.innerText = "Processing...";
+                // Simulating a fetch delay
+                setTimeout(() => {
+                    fetchBtn.innerText = "Fetch Media";
+                    resultsContainer.classList.remove('hidden');
+                    alert("Ready to download! (Note: Connect a backend API to enable real downloads)");
+                }, 1500);
+            } else {
+                alert("Please paste a URL first!");
+            }
+        });
+    </script>
+</body>
+</html>
